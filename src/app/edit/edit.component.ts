@@ -77,10 +77,10 @@ export class EditComponent implements OnInit {
   /** Saves the counter, or creates a new counter */
   saveCounter() {
     const counters = this._counterSvc.counters;
-    this.current.value = this.current.initial;
     if (this.currentIndex || this.currentIndex === 0) {
       counters[this.currentIndex] = this.current;
     } else {
+      this.current.value = this.current.initial;
       counters.push(this.current);
     }
     this._counterSvc.counters = counters;
