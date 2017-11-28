@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col" *ngFor="let counter of counters; index as i">
-      <tt-counter [resetButton]="counter.reset" [color]="counter.color" [initial]="counter.initial" [value]="counter.value" [index]="i"></tt-counter>
+      <tt-counter [resetButton]="counter.reset" [color]="counter.color" [initial]="counter.initial" [value]="counter.value" [index]="i" [name]="counter.name"></tt-counter>
     </div>
   </div>
 </div>

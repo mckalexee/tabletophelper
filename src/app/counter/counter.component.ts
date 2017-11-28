@@ -12,24 +12,31 @@ export class CounterComponent implements OnInit {
   @Input() resetButton = true;
   @Input() value = 0;
   @Input() index: number;
+  @Input() name = 'test';
 
   constructor(private _counterSvc: CounterService) { }
 
   ngOnInit() {
+    console.log(name);
   }
 
   up(amount = 1) {
     this.value += amount;
-    this._counterSvc.updateValue(this.index, this.value);
+    this.save();
   }
 
   down(amount = 1) {
     this.value -= amount;
-    this._counterSvc.updateValue(this.index, this.value);
+    this.save();
   }
 
   reset() {
     this.value = this.initial;
+    this.save();
+  }
+
+  save() {
+    this._counterSvc.updateValue(this.index, this.value);
   }
 
 }

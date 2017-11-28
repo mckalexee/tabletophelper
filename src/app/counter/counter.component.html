@@ -1,12 +1,21 @@
 <div class="btn-group btn-group-justified" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-lg btn-up" (click)="up()"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i></button>
+  <button type="button" class="btn btn-lg btn-up" (click)="up()">
+    <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+  </button>
   <button type="button" class="btn btn-lg btn-up" (click)="up(5)">5</button>
 </div>
 <div class="counter-display" [style.background]="color">
+  <div class="counter-name">{{name}}</div>
+  <div class="spacer"></div>
   <div class="counter-number">{{value}}</div>
+  <div class="spacer"></div>
 </div>
-<button *ngIf="resetButton" class="btn btn-reset btn-lg" (click)="reset()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+<button *ngIf="resetButton" class="btn btn-reset btn-lg" (click)="reset()">
+  <i class="fa fa-refresh" aria-hidden="true"></i>
+</button>
 <div class="btn-group btn-group-justified" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-lg btn-down" (click)="down()"><i class="fa fa-minus-circle fa-fw" aria-hidden="true"></i></button>
+  <button type="button" class="btn btn-lg btn-down" (click)="down()">
+    <i class="fa fa-minus-circle fa-fw" aria-hidden="true"></i>
+  </button>
   <button type="button" class="btn btn-lg btn-down" (click)="down(5)">5</button>
 </div>
