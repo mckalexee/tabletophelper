@@ -1,0 +1,42 @@
+:host {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+}
+
+.counter-display{
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+}
+
+.counter-number {
+  margin: auto;
+  color: white;
+  font-size: 5em;
+}
+
+.btn {
+  font-weight: bold;
+  font-size: 1.5em;
+  background: #12100E;
+  border-color: #12100E;
+  color: #ffffff;
+
+  &.btn-reset {
+    background: #02394A;
+    border-color: #02394A;
+  }
+
+  &:last-of-type {
+    border-radius: 0 0 10px 10px;
+  }
+
+  &:first-of-type {
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  
+
+}
