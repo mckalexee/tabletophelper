@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CounterService } from '../_services/counter.service';
 
 @Component({
   selector: 'tt-counter',
@@ -9,24 +10,26 @@ export class CounterComponent implements OnInit {
   @Input() color = 'rgba(255, 255, 255, 0.1)';
   @Input() initial = 0;
   @Input() resetButton = true;
-  count = 50;
+  @Input() value = 0;
+  @Input() index: number;
 
-  constructor() { }
+  constructor(private _counterSvc: CounterService) { }
 
   ngOnInit() {
-    this.count = this.initial;
   }
 
   up(amount = 1) {
-    this.count += amount;
+    this.value += amount;
+    this._counterSvc.updateValue(this.index, this.value);
   }
 
   down(amount = 1) {
-    this.count -= amount;
+    this.value -= amount;
+    this._counterSvc.updateValue(this.index, this.value);
   }
 
   reset() {
-    this.count = this.initial;
+    this.value = this.initial;
   }
 
 }
