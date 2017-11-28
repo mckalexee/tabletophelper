@@ -11,13 +11,13 @@ $color-reset-light: rgba(0, 255, 237, 0.4);
   padding: 15px 0;
   height: 100%;
 
-  :first-child {
-    border-radius: 10px 10px 0px 0px;
-  }
+  // :first-child {
+  //   border-radius: 10px 10px 0px 0px;
+  // }
 
-  :last-child {
-    border-radius: 0 0 10px 10px;
-  }
+  // :last-child {
+  //   border-radius: 0 0 10px 10px;
+  // }
 }
 
 .counter-display{
