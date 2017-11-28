@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 $enable-rounded: false;
+$fa-font-path : '../node_modules/font-awesome/fonts';
 
-@import './node_modules/bootstrap/scss/bootstrap'
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/font-awesome/scss/font-awesome';
+
+body {
+  background: linear-gradient(141deg, #160052 0%, #41009a 51%, #44009e 75%);
+}

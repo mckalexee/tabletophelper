@@ -1,8 +1,15 @@
+$color-up: rgba(43, 243, 0, 0.26);
+$color-down: rgba(201, 0, 20, 0.26);
+$color-reset: rgba(0, 255, 237, 0.26);
+$color-up-light: rgba(43, 243, 0, 0.4);
+$color-down-light: rgba(201, 0, 20, 0.4);
+$color-reset-light: rgba(0, 255, 237, 0.4);
+
 :host {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 15px 0;
+  height: 100%;
 }
 
 .counter-display{
@@ -20,14 +27,6 @@
 .btn {
   font-weight: bold;
   font-size: 1.5em;
-  background: #12100E;
-  border-color: #12100E;
-  color: #ffffff;
-
-  &.btn-reset {
-    background: #02394A;
-    border-color: #02394A;
-  }
 
   &:last-of-type {
     border-radius: 0 0 10px 10px;
@@ -37,6 +36,33 @@
     border-radius: 10px 10px 0px 0px;
   }
 
-  
+  cursor: pointer;
 
+}
+
+.btn-up {
+  color: #fff;
+  background: $color-up;
+  border-color: transparent;
+  &:hover {
+    background-color: $color-up-light;
+  }
+}
+
+.btn-down {
+  color: #fff;
+  background: $color-down;
+  border-color: transparent;
+  &:hover {
+    background-color: $color-down-light;
+  }
+}
+
+.btn-reset {
+  color: #fff;
+  background: $color-reset;
+  border-color: transparent;
+  &:hover {
+    background-color: $color-reset-light;
+  }
 }

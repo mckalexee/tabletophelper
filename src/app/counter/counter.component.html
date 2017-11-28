@@ -1,6 +1,6 @@
-<button class="btn btn-lg" (click)="up()" >Up</button>
+<button class="btn btn-lg btn-up" (click)="up()" ><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
 <div class="counter-display" [style.background]="color">
   <div class="counter-number">{{count}}</div>
 </div>
-<button class="btn btn-reset btn-lg" (click)="reset()">Reset</button>
-<button class="btn btn-lg" (click)="down()">Down</button>
+<button *ngIf="resetButton" class="btn btn-reset btn-lg" (click)="reset()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+<button class="btn btn-down btn-lg" (click)="down()"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>

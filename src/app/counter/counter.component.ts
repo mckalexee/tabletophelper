@@ -6,13 +6,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./counter.component.scss']
 })
 export class CounterComponent implements OnInit {
-  @Input() color = '#FFF';
-  initial = 0;
+  @Input() color = 'rgba(255, 255, 255, 0.1)';
+  @Input() initial = 0;
+  @Input() resetButton = true;
   count = 50;
 
   constructor() { }
 
   ngOnInit() {
+    this.count = this.initial;
   }
 
   up() {
