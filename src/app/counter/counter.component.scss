@@ -74,4 +74,8 @@ $color-reset-light: rgba(0, 255, 237, 0.4);
     flex-grow: 1;
     border-right: thin solid black;
   }
+
+  > :first-child > i {
+    padding-left: 28px;
+  }
 }

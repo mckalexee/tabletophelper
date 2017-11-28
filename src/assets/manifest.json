@@ -1,0 +1,21 @@
+{
+    "short_name": "Tabletop Helper",
+    "name": "Tabletop Helper",
+    "icons": [
+        {
+            "src": "/assets/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/android-chrome-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/index.html",
+    "orientation": "landscape",
+    "theme_color": "#44009e",
+    "background_color": "#44009e",
+    "display": "standalone"
+}
