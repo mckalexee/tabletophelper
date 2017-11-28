@@ -1,0 +1,49 @@
+.list-group {
+  height: 100vh;
+  overflow: auto;
+  padding: 1em 0;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+}
+
+.list-group-item {
+  cursor: pointer;
+  margin: .1em 0;
+}
+
+.form-col {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  height: 100vh;
+  overflow-x: auto;
+
+  label {
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  button {
+    font-weight: bold;
+  }
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.color-preview {
+  display: block;
+  height: 20px;
+  margin: 1em 0;
+}
+
+.delete-button {
+  margin-top: 1em;
+}
+
+.add-button {
+  background: rgba(255, 255, 255, 0.2);
+}

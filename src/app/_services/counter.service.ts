@@ -35,7 +35,6 @@ export class CounterService {
     const c = this.counters;
     c[colIndex].value = value;
     this.counters = c;
-    this.save();
   }
 
 
@@ -45,6 +44,7 @@ export class CounterService {
 
   set counters(counters: Counter[]) {
     this.counters$.next(counters);
+    this.save();
   }
 
 

@@ -7,4 +7,7 @@ $fa-font-path : '../node_modules/font-awesome/fonts';
 
 body {
   background: linear-gradient(141deg, #160052 0%, #41009a 51%, #44009e 75%);
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }

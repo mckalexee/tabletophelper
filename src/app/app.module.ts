@@ -1,21 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
 
 
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';
 import { CounterContainerComponent } from './counter-container/counter-container.component';
 import { CounterService } from './_services/counter.service';
+import { EditComponent } from './edit/edit.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CounterComponent,
-    CounterContainerComponent
+    CounterContainerComponent,
+    EditComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [CounterService],
   bootstrap: [AppComponent]

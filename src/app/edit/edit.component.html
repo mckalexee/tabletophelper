@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <ul class="list-group">
+        <li *ngFor="let counter of counters$ | async; index as i" class="list-group-item" [style.background]="counter.color" (click)="editCounter(i)">{{counter.name}}</li>
+        <li class="list-group-item add-button" (click)="addCounter()">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </div>
+    <div class="col form-col" *ngIf="isFormOpen">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="current.name">
+      </div>
+      <div class="form-group">
+        <label for="default-value">Default Value</label>
+        <input type="number" class="form-control" id="default-value" [(ngModel)]="current.initial">
+      </div>
+      <div class="form-group">
+        <label class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" [(ngModel)]="current.reset">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Reset Button?</span>
+        </label>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label for="">R</label>
+          <input type="number" class="form-control" name="r" min="0" max="255" [(ngModel)]="color.r" (change)="setColor()">
+        </div>
+        <div class="col">
+          <label for="">G</label>
+          <input type="number" class="form-control" name="g" min="0" max="255" [(ngModel)]="color.g" (change)="setColor()">
+        </div>
+        <div class="col">
+          <label for="">B</label>
+          <input type="number" class="form-control" name="b" min="0" max="255" [(ngModel)]="color.b" (change)="setColor()">
+        </div>
+        <div class="col">
+          <label for="">A</label>
+          <input type="number" class="form-control" name="a" min="0" max="1" [(ngModel)]="color.a" (change)="setColor()">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <div class="color-preview" [style.background]="current.color"></div>
+        </div>
+      </div>
+      <!-- <div class="spacer"></div> -->
+      <div class="form-row">
+        <div class="col">
+          <button class="btn btn-secondary btn-block" (click)="cancelEdit()">
+            <i class="fa fa-ban" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-success btn-block" (click)="saveCounter()">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="form-row" *ngIf="currentIndex">
+        <div class="col">
+          <button class="btn btn-danger btn-block delete-button" (click)="delete()">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
