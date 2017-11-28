@@ -17,12 +17,12 @@ export class CounterComponent implements OnInit {
     this.count = this.initial;
   }
 
-  up() {
-    this.count++;
+  up(amount = 1) {
+    this.count += amount;
   }
 
-  down() {
-    this.count--;
+  down(amount = 1) {
+    this.count -= amount;
   }
 
   reset() {

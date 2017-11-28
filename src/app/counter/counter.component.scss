@@ -66,3 +66,12 @@ $color-reset-light: rgba(0, 255, 237, 0.4);
     background-color: $color-reset-light;
   }
 }
+
+.btn-group-justified {
+  display: flex;
+  width: 100%;
+  > :first-child {
+    flex-grow: 1;
+    border-right: thin solid black;
+  }
+}
