@@ -60,7 +60,7 @@
           </button>
         </div>
       </div>
-      <div class="form-row" *ngIf="currentIndex">
+      <div class="form-row" *ngIf="currentIndex || currentIndex === 0">
         <div class="col">
           <button class="btn btn-danger btn-block delete-button" (click)="delete()">
               <i class="fa fa-trash" aria-hidden="true"></i>

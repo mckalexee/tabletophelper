@@ -10,14 +10,9 @@ $color-reset-light: rgba(0, 255, 237, 0.4);
   flex-direction: column;
   padding: 15px 0;
   height: 100%;
+  min-width: 100px;
+  min-height: 100vh;
 
-  // :first-child {
-  //   border-radius: 10px 10px 0px 0px;
-  // }
-
-  // :last-child {
-  //   border-radius: 0 0 10px 10px;
-  // }
 }
 
 .counter-display{
@@ -29,17 +24,17 @@ $color-reset-light: rgba(0, 255, 237, 0.4);
 
 .counter-number {
   color: white;
-  font-size: 5em;
+  font-size: 3em;
   font-weight: bold;
 }
 
 .counter-name {
   color: white;
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: bold;
   text-transform: uppercase;
-  margin-bottom: -2.3em;
-  padding-top: 1em;
+  margin-bottom: -1.5em;
+  padding-top: .5em;
 }
 
 .spacer {
