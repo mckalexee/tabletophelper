@@ -1,0 +1,32 @@
+.navbutton{
+  position: fixed;
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 214, 255, 0.85);
+  z-index: 999;
+  border-radius: 100%;
+  text-align: center;
+  top: -50px;
+  left: -50px;
+  color: #fff;
+  cursor: pointer;
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+  
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+  
+}
+
+.navbutton > i {
+  margin-left: 45px;
+  margin-top: 55px;
+  font-size: 2em;
+}
+
+.active-nav {
+  display: none;
+}

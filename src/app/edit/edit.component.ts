@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  private _defultCounter: Counter = {
+  private readonly _defaultCounter: Counter = {
     name: '',
     initial: 0,
     color: 'rgba(255, 255, 255, 0.28)',
@@ -21,7 +21,7 @@ export class EditComponent implements OnInit {
   counters$: BehaviorSubject<Counter[]>;
   isFormOpen = false;
 
-  current: Counter = this._defultCounter;
+  current: Counter = JSON.parse(JSON.stringify(this._defaultCounter));
 
   currentIndex: number = null;
 
@@ -62,7 +62,7 @@ export class EditComponent implements OnInit {
 
   /** Loads info for selected counter */
   editCounter(index: number) {
-    this.current = this._counterSvc.counters[index];
+    this.current = JSON.parse(JSON.stringify(this._counterSvc.counters[index]));
     this.currentIndex = index;
     this.loadColor();
     this.isFormOpen = true;
@@ -70,9 +70,7 @@ export class EditComponent implements OnInit {
 
   /** Opens the form without an index to add a new counter */
   addCounter() {
-    this.current = this._defultCounter;
-    this.currentIndex = null;
-    this.loadColor();
+    this.loadDefault();
     this.isFormOpen = true;
   }
 
@@ -80,19 +78,18 @@ export class EditComponent implements OnInit {
   saveCounter() {
     const counters = this._counterSvc.counters;
     this.current.value = this.current.initial;
-    if (this.currentIndex) {
+    if (this.currentIndex || this.currentIndex === 0) {
       counters[this.currentIndex] = this.current;
     } else {
       counters.push(this.current);
     }
     this._counterSvc.counters = counters;
+    this.cancelEdit();
   }
 
   /** Cancels the current edit, and resets the form */
   cancelEdit() {
-    this.current = this._defultCounter;
-    this.currentIndex = null;
-    this.loadColor();
+    this.loadDefault();
     this.isFormOpen = false;
   }
 
@@ -106,6 +103,12 @@ export class EditComponent implements OnInit {
       this.cancelEdit();
     }
 
+  }
+
+  loadDefault() {
+    this.currentIndex = null;
+    this.current = JSON.parse(JSON.stringify(this._defaultCounter));
+    this.loadColor();
   }
 
 }

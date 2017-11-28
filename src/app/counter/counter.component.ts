@@ -17,7 +17,6 @@ export class CounterComponent implements OnInit {
   constructor(private _counterSvc: CounterService) { }
 
   ngOnInit() {
-    console.log(name);
   }
 
   up(amount = 1) {
