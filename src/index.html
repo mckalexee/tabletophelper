@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-76102300-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-76102300-2');
+  </script>
+
   <meta charset="utf-8">
   <title>Tabletop</title>
   <base href="/">
@@ -26,14 +36,14 @@
 <body>
   <tt-root></tt-root>
   <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-          console.log('Service Worker registered');
-        }).catch(function(err) {
-          console.log('Service Worker registration failed: ', err);
-        });
-      }
-    </script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+        console.log('Service Worker registered');
+      }).catch(function (err) {
+        console.log('Service Worker registration failed: ', err);
+      });
+    }
+  </script>
 </body>
 
 </html>
