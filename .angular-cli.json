@@ -10,7 +10,8 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "robots.txt"
+        "robots.txt",
+        "sw.js"
       ],
       "index": "index.html",
       "main": "main.ts",
