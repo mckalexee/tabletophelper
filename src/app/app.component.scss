@@ -4,7 +4,7 @@
   width: 100px;
   height: 100px;
   background: rgba(0, 214, 255, 0.85);
-  z-index: 999;
+  z-index: 50;
   border-radius: 100%;
   text-align: center;
   top: -50px;
@@ -30,3 +30,4 @@
 .active-nav {
   display: none;
 }
+

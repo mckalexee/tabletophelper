@@ -6,11 +6,10 @@ $fa-font-path : '../node_modules/font-awesome/fonts';
 @import '../node_modules/font-awesome/scss/font-awesome';
 
 html, body {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  min-height: 100%;
+  height: auto;
 }
 
 body {
-  background: linear-gradient(141deg, #160052 0%, #41009a 51%, #44009e 75%);
+  background: linear-gradient(to right, #160052 0%, #41009a 51%, #44009e 75%);
 }
