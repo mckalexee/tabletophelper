@@ -9,6 +9,7 @@ import { CounterContainerComponent } from './counter-container/counter-container
 import { CounterService } from './_services/counter.service';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
+import { NavComponent } from './nav/nav.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     CounterComponent,
     CounterContainerComponent,
-    EditComponent
+    EditComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
