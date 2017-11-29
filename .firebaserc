@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "table-top-helper"
+    "default": "table-top-helper",
+    "dev": "table-top-helper-dev"
   }
 }
