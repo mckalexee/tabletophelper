@@ -1,11 +1,19 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Tabletop</title>
   <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
+  <!-- Open Graph Tags -->
+  <meta property="og:url" content="https://helper.gbase.io" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="TableTop Helper" />
+  <meta property="og:description" content="A tool to keep track of health, gold, and other stats in table top games." />
+  <meta property="og:image" content="https://s3.amazonaws.com/helper.gbase.io/img/fbpreview.png" />
+  <meta property="fb:app_id" content="136719857101513">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -14,7 +22,18 @@
   <link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#160052">
   <meta name="theme-color" content="#44009e">
 </head>
+
 <body>
   <tt-root></tt-root>
+  <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+          console.log('Service Worker registered');
+        }).catch(function(err) {
+          console.log('Service Worker registration failed: ', err);
+        });
+      }
+    </script>
 </body>
+
 </html>
