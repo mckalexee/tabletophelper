@@ -1,10 +1,14 @@
 <div class="pull-nav-wrapper" [class.collapsed]="isCollapsed">
-    <div class="pull-nav">
-      <a routerLink="home" class="pull-nav-item"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
-      <a routerLink="edit" class="pull-nav-item"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>Edit</a>
-    </div>
-    <div class="pull-nav-tab" (click)="isCollapsed = !isCollapsed">
-      <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-    </div>
+  <div class="pull-nav">
+    <a routerLink="home" class="pull-nav-item" (click)="isCollapsed = true">
+      <i class="fa fa-home" aria-hidden="true"></i>Home</a>
+    <a routerLink="edit" class="pull-nav-item" (click)="isCollapsed = true"> 
+      <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>Edit</a>
   </div>
-  
+  <div class="pull-nav-tab" (click)="isCollapsed = !isCollapsed">
+    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+  </div>
+</div>
+<div class="pull-shadow" [class.collapsed]="isCollapsed" (click)="isCollapsed = true">
+
+</div>
