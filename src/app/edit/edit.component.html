@@ -4,7 +4,7 @@
       <ul class="list-group">
         <li *ngFor="let counter of counters$ | async; index as i" class="list-group-item" [style.background]="counter.color" (click)="editCounter(i)">{{counter.name}}</li>
         <li class="list-group-item add-button" (click)="addCounter()">
-            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          <i class="fa fa-plus-circle" aria-hidden="true"></i>
         </li>
       </ul>
     </div>
@@ -23,6 +23,13 @@
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">Reset Button?</span>
         </label>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <tt-slider [color]="'#FF0000'"></tt-slider>
+          <tt-slider [color]="'#00FF00'"></tt-slider>
+          <tt-slider [color]="'#0000FF'"></tt-slider>
+        </div>
       </div>
       <div class="form-row">
         <div class="col">
@@ -63,11 +70,10 @@
       <div class="form-row" *ngIf="currentIndex || currentIndex === 0">
         <div class="col">
           <button class="btn btn-danger btn-block delete-button" (click)="delete()">
-              <i class="fa fa-trash" aria-hidden="true"></i>
+            <i class="fa fa-trash" aria-hidden="true"></i>
           </button>
         </div>
       </div>
-
     </div>
   </div>
 </div>

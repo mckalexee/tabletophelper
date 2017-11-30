@@ -10,6 +10,7 @@ import { CounterService } from './_services/counter.service';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
+import { SliderComponent } from './slider/slider.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NavComponent } from './nav/nav.component';
     CounterComponent,
     CounterContainerComponent,
     EditComponent,
-    NavComponent
+    NavComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
