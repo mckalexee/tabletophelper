@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CounterService } from '../_services/counter.service';
 import { Counter } from '../_classes/counter';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'tt-edit',
@@ -9,106 +10,164 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  private readonly _defaultCounter: Counter = {
-    name: '',
-    initial: 0,
-    color: 'rgba(255, 255, 255, 0.28)',
-    reset: true,
-    value: 0
-  };
-
-
+  // Observable of all counters
   counters$: BehaviorSubject<Counter[]>;
+  // Flag for if the form is open
   isFormOpen = false;
-
-  current: Counter = JSON.parse(JSON.stringify(this._defaultCounter));
-
+  // Current index of column being edited
   currentIndex: number = null;
+  // This is the range on the alpha slider
+  alphaRange = 200;
 
+  // Private variables for the color sliders
+  private _red = 255;
+  private _green = 255;
+  private _blue = 255;
+  private _alpha = 0.5;
 
-  color = {
-    r: 255,
-    g: 255,
-    b: 255,
-    a: 0.28,
-  };
+  counterForm: FormGroup;
 
   constructor(private _counterSvc: CounterService) { }
 
   ngOnInit() {
     this.counters$ = this._counterSvc.counters$;
+    this.initForm();
   }
 
-  /** Converts the RGBA values to a color string */
-  setColor() {
-    this.color.r = Number(this.color.r);
-    this.color.g = Number(this.color.g);
-    this.color.b = Number(this.color.b);
-    this.color.a = Number(this.color.a);
-    this.current.color = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.color.a})`;
-  }
-
-  /** Loads the RGBA values from the color string */
-  loadColor() {
-    let color = this.current.color;
+  /** Loads the RGBA values from the color string into the form */
+  loadColor(color: string) {
     color = color.slice(5);
     color = color.slice(0, -1);
     const colors = color.split(', ').map(c => Number(c));
-    this.color.r = colors[0];
-    this.color.g = colors[1];
-    this.color.b = colors[2];
-    this.color.a = colors[3];
+    this._red = colors[0];
+    this._green = colors[1];
+    this._blue = colors[2];
+    this._alpha = colors[3];
+  }
+
+  /** Creates a color string based on the colors, then sets the color form control to the correct value */
+  setColor(r: number, g: number, b: number, a: number) {
+    this.color.setValue(`rgba(${r}, ${g}, ${b}, ${a})`);
   }
 
   /** Loads info for selected counter */
   editCounter(index: number) {
-    this.current = JSON.parse(JSON.stringify(this._counterSvc.counters[index]));
+    this.color.setValue(this._counterSvc.counters[index].color);
+    this.name.setValue(this._counterSvc.counters[index].name);
+    this.initial.setValue(this._counterSvc.counters[index].initial);
+    this.reset.setValue(this._counterSvc.counters[index].reset);
     this.currentIndex = index;
-    this.loadColor();
+    this.loadColor(this._counterSvc.counters[index].color);
     this.isFormOpen = true;
+    console.log(this.red, this.green, this.blue, this.alpha);
+  }
+
+  /** Load's default values into form */
+  initForm() {
+    this.counterForm = new FormGroup({
+      name: new FormControl('NAME'),
+      initial: new FormControl(0),
+      color: new FormControl('rgba(0, 0, 0, 0.5)'),
+      reset: new FormControl(true),
+    });
+    this.currentIndex = null;
   }
 
   /** Opens the form without an index to add a new counter */
   addCounter() {
-    this.loadDefault();
+    this.initForm();
     this.isFormOpen = true;
   }
 
-  /** Saves the counter, or creates a new counter */
+  /** Saves the counter, or adds a new one */
   saveCounter() {
     const counters = this._counterSvc.counters;
+    let newCounter = new Counter();
+    newCounter = {
+      color: this.color.value,
+      initial: this.initial.value,
+      name: this.name.value,
+      reset: this.reset.value,
+      value: this.initial.value
+    };
+    // If we're editing a column, we'll save over it. We also have to check for an index of 0 because it's falsey
     if (this.currentIndex || this.currentIndex === 0) {
-      counters[this.currentIndex] = this.current;
+      // We don't want to overwrite the value of the column if it already exists
+      newCounter.value = counters[this.currentIndex].value;
+      counters[this.currentIndex] = newCounter;
     } else {
-      this.current.value = this.current.initial;
-      counters.push(this.current);
+      counters.push(newCounter);
     }
+
+    // Save the new counters
     this._counterSvc.counters = counters;
-    this.cancelEdit();
   }
 
   /** Cancels the current edit, and resets the form */
   cancelEdit() {
-    this.loadDefault();
+    this.initForm();
     this.isFormOpen = false;
   }
 
   /** Deletes the currently open column */
   delete() {
-    const answer = window.confirm('Are you sure you want to delete ' + this.current.name + '?');
+    const counters = this._counterSvc.counters;
+    const answer = window.confirm('Are you sure you want to delete ' + counters[this.currentIndex].name + '?');
     if (answer) {
-      const counters = this._counterSvc.counters;
       counters.splice(this.currentIndex, 1);
       this._counterSvc.counters = counters;
       this.cancelEdit();
     }
-
   }
 
-  loadDefault() {
-    this.currentIndex = null;
-    this.current = JSON.parse(JSON.stringify(this._defaultCounter));
-    this.loadColor();
+  // Provides an easy way to access the form controls.
+  get color() { return this.counterForm.get('color'); }
+  get name() { return this.counterForm.get('name'); }
+  get initial() { return this.counterForm.get('initial'); }
+  get reset() { return this.counterForm.get('reset'); }
+
+  // Colors
+  // Red
+  set red(value) {
+    if (value > 255) { value = 255; }
+    if (value < 0) { value = 0; }
+    this._red = value;
+    this.setColor(this._red, this._green, this._blue, this._alpha);
   }
+  get red() { return this._red; }
+
+  // Green
+  set green(value) {
+    if (value > 255) { value = 255; }
+    if (value < 0) { value = 0; }
+    this._green = value;
+    this.setColor(this._red, this._green, this._blue, this._alpha);
+  }
+  get green() { return this._green; }
+
+  // Blue
+  set blue(value) {
+    if (value > 255) { value = 255; }
+    if (value < 0) { value = 0; }
+    this._blue = value;
+    this.setColor(this._red, this._green, this._blue, this._alpha);
+  }
+  get blue() {
+    return this._blue;
+  }
+
+  // Alpha. This one is different because alpha is 0 to 1, but the slider needs integer values.
+  set alpha(value) {
+    if (value > this.alphaRange) { value = this.alphaRange; }
+    if (value < 0) { value = 0; }
+    const normalValue = value / this.alphaRange;
+    this._alpha = normalValue;
+    this.setColor(this._red, this._green, this._blue, this._alpha);
+  }
+  get alpha() {
+    const normalValue = this._alpha * this.alphaRange;
+    return normalValue;
+  }
+
 
 }

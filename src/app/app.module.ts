@@ -8,7 +8,7 @@ import { CounterComponent } from './counter/counter.component';
 import { CounterContainerComponent } from './counter-container/counter-container.component';
 import { CounterService } from './_services/counter.service';
 import { EditComponent } from './edit/edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
 import { SliderComponent } from './slider/slider.component';
 
@@ -25,7 +25,8 @@ import { SliderComponent } from './slider/slider.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [CounterService],
   bootstrap: [AppComponent]
