@@ -101,6 +101,7 @@ export class EditComponent implements OnInit {
 
     // Save the new counters
     this._counterSvc.counters = counters;
+    this.cancelEdit();
   }
 
   /** Cancels the current edit, and resets the form */

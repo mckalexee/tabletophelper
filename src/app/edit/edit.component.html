@@ -10,7 +10,7 @@
     </div>
     <!-- Form -->
     <div class="col form-col" *ngIf="isFormOpen">
-      <form [formGroup]="counterForm">
+      <form [formGroup]="counterForm" (ngSubmit)="saveCounter()">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" formControlName="name">
@@ -40,19 +40,19 @@
         <!-- <div class="spacer"></div> -->
         <div class="form-row">
           <div class="col">
-            <button class="btn btn-secondary btn-block" (click)="cancelEdit()">
+            <button class="btn btn-secondary btn-block" (click)="cancelEdit()" type="button">
               <i class="fa fa-ban" aria-hidden="true"></i>
             </button>
           </div>
           <div class="col">
-            <button class="btn btn-success btn-block" (click)="saveCounter()">
+            <button class="btn btn-success btn-block" type="submit">
               <i class="fa fa-check" aria-hidden="true"></i>
             </button>
           </div>
         </div>
         <div class="form-row" *ngIf="currentIndex || currentIndex === 0">
           <div class="col">
-            <button class="btn btn-danger btn-block delete-button" (click)="delete()">
+            <button class="btn btn-danger btn-block delete-button" (click)="delete()" type="button">
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
           </div>

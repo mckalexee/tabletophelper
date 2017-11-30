@@ -11,6 +11,10 @@
   background: linear-gradient(to right, #000, #fff); 
   outline: none;
   border-radius: 10px;
+
+  &:focus {
+    box-shadow: 0 0 4px 2px #FFF;
+  }
 }
 
 /* Mouse-over effects */
