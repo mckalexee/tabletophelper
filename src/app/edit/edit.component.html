@@ -10,7 +10,7 @@
     </div>
     <!-- Form -->
     <div class="col form-col" *ngIf="isFormOpen">
-      <form [formGroup]="counterForm" (ngSubmit)="saveCounter()">
+      <form [formGroup]="counterForm" (ngSubmit)="submit()">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" formControlName="name">
@@ -45,7 +45,7 @@
             </button>
           </div>
           <div class="col">
-            <button class="btn btn-success btn-block" type="submit">
+            <button class="btn btn-success btn-block" type="button" (click)="saveCounter()">
               <i class="fa fa-check" aria-hidden="true"></i>
             </button>
           </div>
@@ -57,6 +57,7 @@
             </button>
           </div>
         </div>
+        <input type="number" class="hide-keyboard" onfocus="blur()">
       </form>
     </div>
   </div>

@@ -110,6 +110,9 @@ export class EditComponent implements OnInit {
     this.isFormOpen = false;
   }
 
+  /** Disables submit functionality, required fro android keyboard to not automatically save the form */
+  submit() { }
+
   /** Deletes the currently open column */
   delete() {
     const counters = this._counterSvc.counters;

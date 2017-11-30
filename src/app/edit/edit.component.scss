@@ -51,3 +51,12 @@
 .add-button {
   background: rgba(255, 255, 255, 0.2);
 }
+
+.hide-keyboard {
+  position: fixed;
+  clip: rect(0,0,0,0);
+  top: 0;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+}
