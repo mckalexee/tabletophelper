@@ -76,6 +76,7 @@ export class EditComponent implements OnInit {
   /** Opens the form without an index to add a new counter */
   addCounter() {
     this.initForm();
+    this.loadColor(this.color.value);
     this.isFormOpen = true;
   }
 
