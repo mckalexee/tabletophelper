@@ -14,5 +14,13 @@ module.exports = {
     'dist/**.woff',
     'dist/assets/**.*'
   ],
-  maximumFileSizeToCacheInBytes: 10 * 1024 * 1024
+  maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
+  runtimeCaching: [{
+    urlPattern: '/home',
+    handler: 'networkFirst'
+  },
+  {
+    urlPattern: 'index.html',
+    handler: 'networkFirst'
+  }]
 };
