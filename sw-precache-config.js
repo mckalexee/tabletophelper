@@ -16,11 +16,7 @@ module.exports = {
   ],
   maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
   runtimeCaching: [{
-    urlPattern: '/home',
-    handler: 'networkFirst'
-  },
-  {
-    urlPattern: 'index.html',
+    urlPattern: /.*/g,
     handler: 'networkFirst'
   }]
 };
