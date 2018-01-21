@@ -41,10 +41,22 @@
         </div>
         <div class="form-row">
           <div class="col">
-            <tt-slider [start]="redMin" [color]="redMax" [value]="red" [max]="255" (valueChanged)="red = $event"></tt-slider>
-            <tt-slider [start]="greenMin" [color]="greenMax" [value]="green" [max]="255" (valueChanged)="green = $event"></tt-slider>
-            <tt-slider [start]="blueMin" [color]="blueMax" [value]="blue" [max]="255" (valueChanged)="blue = $event"></tt-slider>
-            <tt-slider [start]="'#00000000'" [color]="colorHex" [value]="alpha" [max]="alphaRange" (valueChanged)="alpha = $event"></tt-slider>
+            <div class="slider-container">
+              <label for="redSlider">R:</label>
+              <tt-slider id="redSlider" [start]="redMin" [color]="redMax" [value]="red" [max]="255" (valueChanged)="red = $event"></tt-slider>
+            </div>
+            <div class="slider-container">
+              <label for="greenSlider">G:</label>
+              <tt-slider id="greenSlider" [start]="greenMin" [color]="greenMax" [value]="green" [max]="255" (valueChanged)="green = $event"></tt-slider>
+            </div>
+            <div class="slider-container">
+              <label for="blueSlider">B:</label>
+              <tt-slider id="blueSlider" [start]="blueMin" [color]="blueMax" [value]="blue" [max]="255" (valueChanged)="blue = $event"></tt-slider>
+            </div>
+            <div class="slider-container">
+              <label for="alphaSlider">A:</label>
+              <tt-slider id="alphaSlider" [start]="'#00000000'" [color]="colorHex" [value]="alpha" [max]="alphaRange" (valueChanged)="alpha = $event"></tt-slider>
+            </div>
           </div>
           <div class="col-2 color-preview-wrapper">
             <div class="color-preview" [style.background]="color.value"></div>
