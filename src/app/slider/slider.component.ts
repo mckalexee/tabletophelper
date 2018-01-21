@@ -36,7 +36,7 @@ export class SliderComponent implements OnInit {
     this._startColor = value;
     this.bg = `linear-gradient(to right, ${this._startColor}, ${this._endColor})`;
   }
-  get start(){
+  get start() {
     return this._startColor;
   }
 
