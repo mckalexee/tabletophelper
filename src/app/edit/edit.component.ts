@@ -18,6 +18,8 @@ export class EditComponent implements OnInit {
   currentIndex: number = null;
   // This is the range on the alpha slider
   alphaRange = 200;
+  // Total number of counters
+  total = 0;
 
   // Private variables for the color sliders
   private _red = 255;
@@ -25,12 +27,16 @@ export class EditComponent implements OnInit {
   private _blue = 255;
   private _alpha = 0.5;
 
+
   counterForm: FormGroup;
 
   constructor(private _counterSvc: CounterService) { }
 
   ngOnInit() {
     this.counters$ = this._counterSvc.counters$;
+    this.counters$.subscribe(counters => {
+      this.total = counters.length;
+    });
     this.initForm();
   }
 
@@ -122,6 +128,32 @@ export class EditComponent implements OnInit {
       counters.splice(this.currentIndex, 1);
       this._counterSvc.counters = counters;
       this.cancelEdit();
+    }
+  }
+
+  /** Moves the counter up in the list */
+  moveUp(index = this.currentIndex) {
+    if (index === 0) { return; }
+    const counters = this._counterSvc.counters;
+    const temp = counters[index - 1];
+    counters[index - 1] = counters[index];
+    counters[index] = temp;
+    this._counterSvc.counters = counters;
+    if (this.currentIndex) {
+      this.editCounter(index - 1);
+    }
+
+  }
+
+  moveDown(index = this.currentIndex) {
+    if (index === (this.total - 1)) { return; }
+    const counters = this._counterSvc.counters;
+    const temp = counters[index + 1];
+    counters[index + 1] = counters[index];
+    counters[index] = temp;
+    this._counterSvc.counters = counters;
+    if (this.currentIndex) {
+      this.editCounter(index + 1);
     }
   }
 
