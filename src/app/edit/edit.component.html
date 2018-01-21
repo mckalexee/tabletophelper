@@ -1,12 +1,28 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <ul class="list-group">
-        <li *ngFor="let counter of counters$ | async; index as i" class="list-group-item" [style.background]="counter.color" (click)="editCounter(i)">{{counter.name}}</li>
-        <li class="list-group-item add-button" (click)="addCounter()">
-          <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        </li>
-      </ul>
+  <div class="form-row">
+    <div class="col counter-col">
+      <div class="counter-select" *ngFor="let counter of counters$ | async; index as i" [style.background]="counter.color">
+        <span type="button" class="btn btn-none" *ngIf="i === 0">
+          <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+        </span>
+        <button type="button" class="btn btn-transparent" *ngIf="i !== 0" (click)="moveUp(i)">
+          <i class="fa fa-caret-up fa-fw" aria-hidden="true"></i>
+        </button>
+        <div class="counter-name" (click)="editCounter(i)">
+          {{counter.name}}
+        </div>
+        <button type="button" class="btn btn-transparent" *ngIf="i !== (total - 1)" (click)="moveDown(i)">
+          <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+        </button>
+        <span type="button" class="btn btn-none" *ngIf="i === (total - 1)">
+          <i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="counter-select">
+        <div class="counter-name new-counter" (click)="addCounter()">
+          <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>
+        </div>
+      </div>
     </div>
     <!-- Form -->
     <div class="col form-col" *ngIf="isFormOpen">
@@ -37,7 +53,6 @@
             <div class="color-preview" [style.background]="color.value"></div>
           </div>
         </div>
-        <!-- <div class="spacer"></div> -->
         <div class="form-row">
           <div class="col">
             <button class="btn btn-secondary btn-block" (click)="cancelEdit()" type="button">
