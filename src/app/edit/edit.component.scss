@@ -18,6 +18,7 @@
   padding-bottom: 1em;
   height: 100vh;
   overflow-x: auto;
+  min-width: 320px;
 
   label {
     color: #fff;
@@ -42,7 +43,7 @@
 .color-preview {
   display: block;
   height: 100%;
-  border-radius: 500px;
+  border-radius: 15px;
 }
 
 .delete-button {
@@ -104,6 +105,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   justify-content: flex-start;
+  min-width: 320px;
   > :first-child {
     margin-top: 15px;
   }
@@ -111,4 +113,24 @@
 
 .new-counter {
   background-color: #ffffff30;
+}
+
+.slider-container {
+  display: flex;
+  
+  label {
+    margin-right: 5px;
+    width: 20px;
+    font-size: 1.15em;
+  }
+
+  tt-slider {
+    flex-grow: 1;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .form-col, .counter-col {
+    height: auto;
+  }
 }
