@@ -27,12 +27,13 @@ export class EditComponent implements OnInit {
   private _blue = 255;
   private _alpha = 0.5;
 
-
+  // The object representing the edit counter form
   counterForm: FormGroup;
 
   constructor(private _counterSvc: CounterService) { }
 
   ngOnInit() {
+    // Load the counter service, and subscribe to any saved counters
     this.counters$ = this._counterSvc.counters$;
     this.counters$.subscribe(counters => {
       this.total = counters.length;
@@ -145,6 +146,7 @@ export class EditComponent implements OnInit {
 
   }
 
+  /** Moves a counter down in the list */
   moveDown(index = this.currentIndex) {
     if (index === (this.total - 1)) { return; }
     const counters = this._counterSvc.counters;
@@ -206,5 +208,64 @@ export class EditComponent implements OnInit {
     return normalValue;
   }
 
+  // Getters for the color slider colors for max/min.
+  // Where redMax would be the current color with red at the highest value,
+  // and redMin would be the current color with red at the lowest value
+  // If the color hex is less than 16 it can cause the color to display incorrectly. We have to check for that
+
+  get redMax() {
+    const r = 'FF';
+    const g = this._padIfNeeded(this.green.toString(16));
+    const b = this._padIfNeeded(this.blue.toString(16));
+    return `#${r}${g}${b}`;
+  }
+  get redMin() {
+    const r = '00';
+    const g = this._padIfNeeded(this.green.toString(16));
+    const b = this._padIfNeeded(this.blue.toString(16));
+    return `#${r}${g}${b}`;
+  }
+
+  get greenMax() {
+    const r = this._padIfNeeded(this.red.toString(16));
+    const g = 'FF';
+    const b = this._padIfNeeded(this.blue.toString(16));
+    return `#${r}${g}${b}`;
+  }
+  get greenMin() {
+    const r = this._padIfNeeded(this.red.toString(16));
+    const g = '00';
+    const b = this._padIfNeeded(this.blue.toString(16));
+    return `#${r}${g}${b}`;
+  }
+
+  get blueMax() {
+    const r = this._padIfNeeded(this.red.toString(16));
+    const g = this._padIfNeeded(this.green.toString(16));
+    const b = 'FF';
+    return `#${r}${g}${b}`;
+  }
+  get blueMin() {
+    const r = this._padIfNeeded(this.red.toString(16));
+    const g = this._padIfNeeded(this.green.toString(16));
+    const b = '00';
+    return `#${r}${g}${b}`;
+  }
+
+  /** Returns the hex value of the current color selected. */
+  get colorHex() {
+    const r = this._padIfNeeded(this.red.toString(16));
+    const g = this._padIfNeeded(this.green.toString(16));
+    const b = this._padIfNeeded(this.blue.toString(16));
+    return `#${r}${g}${b}`;
+  }
+
+  /** Pads a hex color to have 2 digits */
+  private _padIfNeeded(color: string) {
+    if (color.length === 1) {
+      color = '0' + color;
+    }
+    return color;
+  }
 
 }
