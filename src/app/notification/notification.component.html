@@ -1,0 +1,8 @@
+<span class="message">
+  {{message}}
+</span>
+<div class="button-container">
+  <button *ngFor="let b of buttons" class="alert-button" (click)="clickButton(b.name)" [style.color]="b.color">
+    {{b.name}}
+  </button>
+</div>

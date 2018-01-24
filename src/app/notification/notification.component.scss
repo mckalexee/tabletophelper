@@ -1,0 +1,45 @@
+:host {
+  background: #0a0f21;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  box-shadow: -3px -3px 10px rgba(0, 0, 0, 0.82);
+  animation-duration: .4s;
+  animation-name: slidein;
+
+  & > .message {
+    padding: 10px;
+  }
+}
+
+.alert-button {
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+
+  transition: .1s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
