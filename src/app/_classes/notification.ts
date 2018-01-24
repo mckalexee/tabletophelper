@@ -6,6 +6,7 @@ export class Button {
 }
 
 export class Notification {
+  id?: Symbol;
   message: string;
   response?: Subject<string>;
   buttons?: Button[];

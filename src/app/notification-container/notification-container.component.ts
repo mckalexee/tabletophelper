@@ -14,8 +14,18 @@ export class NotificationContainerComponent implements OnInit {
   constructor(private _notifySvc: NotificationService) { }
 
   ngOnInit() {
-    this._notifySvc.notifications$.subscribe(notificaiton => {
-      this.notifications.push(notificaiton);
+    this._notifySvc.notifications$.subscribe(e => {
+      switch (e.event) {
+        case 'add':
+          this.notifications.push(e.notification);
+          break;
+        case 'delete':
+          this.notifications = this.notifications.filter(n => n.id !== e.id);
+          break;
+        default:
+          break;
+      }
+
     });
 
 
@@ -23,7 +33,6 @@ export class NotificationContainerComponent implements OnInit {
 
   buttonClicked(name: string, index: number) {
     this.notifications[index].response.next(name);
-    this.notifications[index].response.complete();
     this.notifications.splice(index, 1);
   }
 
