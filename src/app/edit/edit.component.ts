@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CounterService } from '../_services/counter.service';
+import { NotificationService } from '../_services/notification.service';
 import { Counter } from '../_classes/counter';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -30,7 +32,10 @@ export class EditComponent implements OnInit {
   // The object representing the edit counter form
   counterForm: FormGroup;
 
-  constructor(private _counterSvc: CounterService) { }
+  // Subscription holding the delete confirmation
+  deleteConfirmation$: Subject<string> = null;
+
+  constructor(private _counterSvc: CounterService, private _notifySvc: NotificationService) { }
 
   ngOnInit() {
     // Load the counter service, and subscribe to any saved counters
@@ -39,6 +44,25 @@ export class EditComponent implements OnInit {
       this.total = counters.length;
     });
     this.initForm();
+
+
+    setTimeout(() => {
+      this._notifySvc.add({
+        message: 'Hello World',
+        buttons: [
+          {
+            name: 'confirm',
+            color: 'white'
+          },
+          {
+            name: 'cancel',
+            color: 'red'
+          }
+        ]
+      }).subscribe(response => {
+        console.log('Response', response);
+      });
+    }, 1000);
   }
 
   /** Loads the RGBA values from the color string into the form */
@@ -124,12 +148,20 @@ export class EditComponent implements OnInit {
   /** Deletes the currently open column */
   delete() {
     const counters = this._counterSvc.counters;
-    const answer = window.confirm('Are you sure you want to delete ' + counters[this.currentIndex].name + '?');
-    if (answer) {
-      counters.splice(this.currentIndex, 1);
-      this._counterSvc.counters = counters;
-      this.cancelEdit();
-    }
+    const index = this.currentIndex;
+    this._notifySvc.add({
+      message: `Delete column ${counters[index].name}?`,
+      buttons: [
+        { name: 'yes' },
+        { name: 'Cancel', color: 'red' }
+      ]
+    }).subscribe(response => {
+      if (response === 'yes') {
+        counters.splice(index, 1);
+        this._counterSvc.counters = counters;
+        this.cancelEdit();
+      }
+    });
   }
 
   /** Moves the counter up in the list */

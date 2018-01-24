@@ -1,3 +1,8 @@
 <div class="notification-container">
-  <tt-notification message="test"></tt-notification>
+  <tt-notification 
+    *ngFor="let n of notifications; index as i" 
+    (buttonClicked)="buttonClicked($event, i)" 
+    [message]="n.message" 
+    [buttons]="n.buttons">
+  </tt-notification>
 </div>

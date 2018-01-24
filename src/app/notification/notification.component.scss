@@ -8,6 +8,8 @@
   color: white;
   font-weight: bold;
   box-shadow: -3px -3px 10px rgba(0, 0, 0, 0.82);
+  animation-duration: .4s;
+  animation-name: slidein;
 
   & > .message {
     padding: 10px;
@@ -23,13 +25,21 @@
   padding: 10px;
   cursor: pointer;
 
-  &.dismiss-button {
-    color: #e2003b;
+  transition: .1s;
 
-    :hover {
-      color: #ff0008;
-    }
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateX(-50%);
+    opacity: 0;
   }
 
-  
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

@@ -2,10 +2,7 @@
   {{message}}
 </span>
 <div class="button-container">
-  <button class="alert-button">
-    update
-  </button>
-  <button class="alert-button dismiss-button" aria-label="close alert">
-    dismiss
+  <button *ngFor="let b of buttons" class="alert-button" (click)="clickButton(b.name)" [style.color]="b.color">
+    {{b.name}}
   </button>
 </div>

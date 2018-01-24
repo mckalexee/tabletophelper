@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Button} from '../_classes/notification';
 
 @Component({
   selector: 'tt-notification',
@@ -7,10 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NotificationComponent implements OnInit {
   @Input() message = '0';
+  @Input() buttons: Button[] = [];
+
+  @Output() buttonClicked = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  clickButton(name: string) {
+    this.buttonClicked.emit(name);
   }
 
 }

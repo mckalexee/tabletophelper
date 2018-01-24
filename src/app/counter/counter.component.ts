@@ -19,21 +19,25 @@ export class CounterComponent implements OnInit {
   ngOnInit() {
   }
 
+  /** Increment the counter, default by one */
   up(amount = 1) {
     this.value += amount;
     this.save();
   }
 
+  /** Decrease the counter, default by one */
   down(amount = 1) {
     this.value -= amount;
     this.save();
   }
 
+  /** Resets the value of the counter to the initial value */
   reset() {
     this.value = this.initial;
     this.save();
   }
 
+  /** Saves the counters value so it persists */
   save() {
     this._counterSvc.updateValue(this.index, this.value);
   }
