@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CounterService } from '../_services/counter.service';
 import { NotificationService } from '../_services/notification.service';
 import { Counter } from '../_classes/counter';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'tt-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit, OnDestroy {
   // Observable of all counters
   counters$: BehaviorSubject<Counter[]>;
+  countersSub: Subscription;
   // Flag for if the form is open
   isFormOpen = false;
   // Current index of column being edited
@@ -39,10 +41,19 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     // Load the counter service, and subscribe to any saved counters
     this.counters$ = this._counterSvc.counters$;
-    this.counters$.subscribe(counters => {
+    this.countersSub = this.counters$.subscribe(counters => {
       this.total = counters.length;
     });
     this.initForm();
+  }
+
+  ngOnDestroy() {
+    this.countersSub.unsubscribe();
+    // If there's an open delete notification, we want to get rid of it
+    if (this.delNotificationID) {
+      this._notifySvc.delete(this.delNotificationID);
+      this.delNotificationID = null;
+    }
   }
 
   /** Loads the RGBA values from the color string into the form */
@@ -119,6 +130,7 @@ export class EditComponent implements OnInit {
   cancelEdit() {
     this.initForm();
     this.isFormOpen = false;
+    // If there's an open delete notification, we want to get rid of it
     if (this.delNotificationID) {
       this._notifySvc.delete(this.delNotificationID);
       this.delNotificationID = null;
@@ -132,6 +144,7 @@ export class EditComponent implements OnInit {
   delete() {
     const counters = this._counterSvc.counters;
     const index = this.currentIndex;
+    // Create a notification confirming if we want to delete the column
     const delNotification = this._notifySvc.add({
       message: `Delete column ${counters[index].name}?`,
       buttons: [
@@ -139,8 +152,10 @@ export class EditComponent implements OnInit {
         { name: 'Cancel', color: 'red' }
       ]
     });
+    // We store the ID in the scope so we can delete the notification if we need to
     this.delNotificationID = delNotification.id;
     delNotification.response.subscribe(response => {
+      // We delete the column if the user clicks yes
       if (response === 'yes') {
         counters.splice(index, 1);
         this._counterSvc.counters = counters;
