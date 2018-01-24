@@ -15,11 +15,9 @@ export class CounterService {
   constructor() {
     const savedCounters = localStorage.getItem('counters');
     if (savedCounters) {
-      console.log('Saved Counters Found');
       const parsedCounters: Counter[] = JSON.parse(savedCounters);
       this.counters$.next(parsedCounters);
     } else {
-      console.log('No Saved Counters Found');
       this.counters$.next(this._defaultCounters);
       this.save();
     }

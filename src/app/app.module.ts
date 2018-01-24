@@ -15,6 +15,7 @@ import { SliderComponent } from './slider/slider.component';
 import { NotificationService } from './_services/notification.service';
 import { NotificationContainerComponent } from './notification-container/notification-container.component';
 import { NotificationComponent } from './notification/notification.component';
+import { SwUpdateService } from './_services/sw-update.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { NotificationComponent } from './notification/notification.component';
     ReactiveFormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [CounterService, NotificationService],
+  providers: [CounterService, NotificationService, SwUpdateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

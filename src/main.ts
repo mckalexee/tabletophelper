@@ -10,8 +10,6 @@ if (environment.production) {
 }
 
 function loadGTag() {
-  console.log('Loading gtag');
-
   (function (d, script) {
     script = d.createElement('script');
     script.type = 'text/javascript';

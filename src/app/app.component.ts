@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SwUpdateService } from './_services/sw-update.service';
 
 @Component({
   selector: 'tt-root',
@@ -6,5 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Tabletop';
+  title = 'Tabletop Helper';
+
+  constructor(private _appUpdate: SwUpdateService) { }
 }
