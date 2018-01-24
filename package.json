@@ -5,13 +5,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod & npm run sw",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "sw": "sw-precache --root=dist --config=sw-precache-config.js",
     "deploy": "ng build --prod && firebase deploy -P dev",
-    "deploy-prod": "npm run build & firebase deploy -P default"
+    "deploy-prod": "npm run build && firebase deploy -P default"
   },
   "private": true,
   "dependencies": {
