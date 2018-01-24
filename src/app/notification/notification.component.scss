@@ -1,0 +1,35 @@
+:host {
+  background: #0a0f21;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  box-shadow: -3px -3px 10px rgba(0, 0, 0, 0.82);
+
+  & > .message {
+    padding: 10px;
+  }
+}
+
+.alert-button {
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+
+  &.dismiss-button {
+    color: #e2003b;
+
+    :hover {
+      color: #ff0008;
+    }
+  }
+
+  
+}

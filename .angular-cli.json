@@ -11,7 +11,7 @@
         "assets",
         "favicon.ico",
         "robots.txt",
-        "service-worker.js"
+        "gtag.js"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -20,6 +20,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "tt",
+      "serviceWorker": true,
       "styles": [
         "styles.scss"
       ],
@@ -57,6 +58,7 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {
+    }
   }
 }
