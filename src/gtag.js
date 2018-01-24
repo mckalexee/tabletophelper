@@ -5,7 +5,7 @@
   script.onload = function () {
     // remote script has loaded
   };
-  script.src = 'http://www.google-analytics.com/ga.js';
+  script.src = 'https://www.google-analytics.com/ga.js';
   d.getElementsByTagName('head')[0].appendChild(script);
 }(document));
 
