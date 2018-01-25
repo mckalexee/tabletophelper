@@ -81,6 +81,10 @@ export class EditComponent implements OnInit, OnDestroy {
     this.currentIndex = index;
     this.loadColor(this._counterSvc.counters[index].color);
     this.isFormOpen = true;
+    if (this.delNotificationID) {
+      this._notifySvc.delete(this.delNotificationID);
+      this.delNotificationID = null;
+    }
   }
 
   /** Load's default values into form */
@@ -92,6 +96,10 @@ export class EditComponent implements OnInit, OnDestroy {
       reset: new FormControl(true),
     });
     this.currentIndex = null;
+    if (this.delNotificationID) {
+      this._notifySvc.delete(this.delNotificationID);
+      this.delNotificationID = null;
+    }
   }
 
   /** Opens the form without an index to add a new counter */
@@ -146,7 +154,7 @@ export class EditComponent implements OnInit, OnDestroy {
     const index = this.currentIndex;
     // Create a notification confirming if we want to delete the column
     const delNotification = this._notifySvc.add({
-      message: `Delete column ${counters[index].name}?`,
+      message: `Delete column: "${counters[index].name}"?`,
       buttons: [
         { name: 'yes' },
         { name: 'Cancel', color: 'red' }

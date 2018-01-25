@@ -63,6 +63,11 @@
           </div>
         </div>
         <div class="form-row">
+          <div class="col" *ngIf="currentIndex || currentIndex === 0">
+            <button class="btn btn-danger btn-block delete-button" (click)="delete()" type="button">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
           <div class="col">
             <button class="btn btn-secondary btn-block" (click)="cancelEdit()" type="button">
               <i class="fa fa-ban" aria-hidden="true"></i>
@@ -71,13 +76,6 @@
           <div class="col">
             <button class="btn btn-success btn-block" type="button" (click)="saveCounter()">
               <i class="fa fa-check" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-        <div class="form-row" *ngIf="currentIndex || currentIndex === 0">
-          <div class="col">
-            <button class="btn btn-danger btn-block delete-button" (click)="delete()" type="button">
-              <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
           </div>
         </div>
